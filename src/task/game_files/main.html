@@ -3,34 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';">
-    <title>Koii DOS</title>
+    <title>SMART Click Game</title>
 
     <style>
         html, body {
             height: 100%;
             margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
         }
 
-        #dos {
-            width: 100%;
-            height: 100%;
+        #game-container {
+            text-align: center;
+        }
+
+        #game-container h1 {
+            color: #28a745;
+            font-size: 2.5rem;
+        }
+
+        #game-container button {
+            background-color: #28a745;
+            color: white;
+            font-size: 1.5rem;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #game-container button:hover {
+            background-color: #218838;
+        }
+
+        #score {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
         }
     </style>
-
-    <!-- js-dos style sheet -->
-    <link rel="stylesheet" href="./js-dos.css">
-
-    <!-- js-dos -->
-    <script src="./js-dos.js"></script>
 </head>
 <body>
 
-    <div id="dos"></div>
-    
+    <div id="game-container">
+        <h1>SMART Click Game</h1>
+        <p>Tap the button below to earn SMART tokens!</p>
+        <button id="click-button">Click Me!</button>
+        <div id="score">Score: 0</div>
+    </div>
+
     <script>
-        window.onload = function() {  // Ensure DOM is fully loaded before running the script
-            Dos(document.getElementById("dos"), {
-                url: "./bundle.jsdos",
+        // JavaScript to handle click game logic
+        window.onload = function () {
+            const button = document.getElementById("click-button");
+            const scoreDisplay = document.getElementById("score");
+            let score = 0;
+
+            button.addEventListener("click", () => {
+                score++;
+                scoreDisplay.textContent = `Score: ${score}`;
+
+                // Optionally, send the score to the backend for tracking
+                fetch('/api/click', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ score })
+                }).catch(err => console.error('Error sending score:', err));
             });
         };
     </script>

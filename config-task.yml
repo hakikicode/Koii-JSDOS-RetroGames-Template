@@ -66,7 +66,7 @@ task_type: "KPL"
 
 ## Token Mint Address (ONLY for KPL tasks) ##
 # The Fire Token address is provided as an example.
-token_type: "FJG2aEPtertCXoedgteCCMmgngSZo1Zd715oNBzR7xpR"
+token_type: "AnYJ5HBwzLu5B5gctBHVJ2uLAXStwJGbGUDyYFH6wUQT"
 
 ## Total Bounty Amount ##
 # The total bounty amount that will be available for distribution over all rounds.

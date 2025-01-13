@@ -1,14 +1,12 @@
 import { namespaceWrapper } from "@_koii/namespace-wrapper";
 
 export async function submission(roundNumber) {
-  /**
-   * Submit the task proofs for auditing
-   * Must return a string of max 512 bytes to be submitted on chain
-   */
   try {
-    console.log(`No submissions, this is a local game ${roundNumber}`);
-    // return await namespaceWrapper.storeGet("value");
+    const clicks = await namespaceWrapper.storeGet("clicks");
+    console.log(`Submitting clicks for round ${roundNumber}: ${clicks}`);
+    return `Round ${roundNumber}: ${clicks} clicks`;
   } catch (error) {
-    console.error("MAKE SUBMISSION ERROR:", error);
+    console.error("Submission error:", error);
+    return null;
   }
 }
